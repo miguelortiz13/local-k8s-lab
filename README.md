@@ -44,7 +44,7 @@ make tools    # instala kubectl, kind, helm y k9s en ~/.local/bin (versiones fij
 make doctor   # verifica herramientas, Docker y memoria
 make up       # crea el cluster (1 control-plane + 2 workers)
 make deploy   # despliega Online Boutique y espera a que esté lista
-make open     # tienda en http://localhost:8080
+make open     # tienda en http://localhost:8090
 make smoke    # prueba de humo: el frontend responde 200
 make down     # destruye todo
 ```
@@ -56,7 +56,7 @@ make down     # destruye todo
 | `CLUSTER` | `boutique` | Nombre del cluster kind |
 | `NAMESPACE` | `boutique` | Namespace de la app |
 | `CHART_VERSION` | `0.10.6` | Versión del chart |
-| `PORT` | `8080` | Puerto local de `make open` |
+| `PORT` | `8090` | Puerto local de `make open` (ej. `make open PORT=9000` si está ocupado) |
 
 ## Estructura
 

@@ -7,7 +7,7 @@ NAMESPACE     ?= boutique
 CHART         ?= oci://us-docker.pkg.dev/online-boutique-ci/charts/onlineboutique
 CHART_VERSION ?= 0.10.6
 VALUES        ?= values/onlineboutique.yaml
-PORT          ?= 8080
+PORT          ?= 8090
 
 export PATH := $(HOME)/.local/bin:$(PATH)
 
@@ -46,7 +46,7 @@ status: ## Estado de pods y servicios
 .PHONY: open
 open: ## Expone la tienda en http://localhost:$(PORT) (Ctrl+C para cerrar)
 	@echo "Tienda en http://localhost:$(PORT)"
-	kubectl --context 'kind-$(CLUSTER)' -n '$(NAMESPACE)' port-forward svc/frontend '$(PORT):80'
+	kubectl --context 'kind-$(CLUSTER)' -n '$(NAMESPACE)' port-forward --address 127.0.0.1 svc/frontend '$(PORT):80'
 
 .PHONY: smoke
 smoke: ## Prueba de humo: el frontend responde HTTP 200
