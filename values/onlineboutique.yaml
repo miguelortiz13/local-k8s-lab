@@ -1,0 +1,16 @@
+# Overrides del chart oficial de Online Boutique para el entorno local.
+# Valores completos: helm show values oci://us-docker.pkg.dev/online-boutique-ci/charts/onlineboutique
+
+images:
+  # El chart 0.10.6 apunta por defecto a google-samples/microservices-demo, donde
+  # el tag v0.10.6 no existe (ImagePullBackOff). Las imágenes de ese release se
+  # publicaron en online-boutique-ci. Quitar cuando upstream corrija el default.
+  repository: us-central1-docker.pkg.dev/online-boutique-ci/microservices-demo
+
+frontend:
+  # En kind no hay LoadBalancer: se accede con `make open` (port-forward).
+  externalService: false
+
+loadGenerator:
+  # Genera tráfico continuo, útil para ver métricas en proyectos siguientes.
+  create: true
